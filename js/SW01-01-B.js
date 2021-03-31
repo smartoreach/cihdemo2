@@ -30,16 +30,6 @@ let SW01_01_B = `<a class="navbar-brand" href="/">
 // Update HTML
 $('#SW01-01-B').html(SW01_01_B);
 
-let currentLocation = location.href.split(ClientData.domain);
-let href = currentLocation[1].split("/")[1];
-console.log(href);
-// $('.nav-link[href$="' + href + '"' ).addClass('active');
-
-if (currentLocation[1] === '/' ) {
-  $('.nav-link[href="/"]').addClass('active');
-} else {
-  $('.nav-link[href$="' + href + '"]' ).addClass('active');
-} 
 
 $('.nav-link[href$="/products-and-services"]').closest("li").addClass('dropdown');
 
@@ -48,7 +38,7 @@ ClientData.productsAndServices.map((item) => {
   productsAmdServicesList += `<a class="dropdown-item" href="${item.href}"> ${item.name} </a>`
 });
 
-let productsAmdServicesHTML = `<a class="nav-link " href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+let productsAmdServicesHTML = `<a class="nav-link " href="/products-and-services" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   Products & Services
 </a>
 <div class="dropdown-menu SW01-01-B-product-dropdown" aria-labelledby="navbarDropdown2">
@@ -56,3 +46,15 @@ let productsAmdServicesHTML = `<a class="nav-link " href="#" id="navbarDropdown2
           </div>
 `;
 $('.nav-link[href$="/products-and-services"]').closest("li").html(productsAmdServicesHTML);
+
+// Highlight current location
+let currentLocation = location.href.split(ClientData.domain);
+let href = currentLocation[1].split("/")[1];
+console.log(href);
+// $('.nav-link[href$="' + href + '"' ).addClass('active');
+console.log(  $('.nav-link[href$="' + href + '"]' ));
+if (currentLocation[1] === '/' ) {
+  $('.nav-link[href="/"]').addClass('active');
+} else {
+  $('.nav-link[href$="' + href + '"]' ).addClass('active');
+}
